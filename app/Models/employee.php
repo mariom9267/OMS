@@ -11,16 +11,15 @@ class employee extends Model
     protected $table='employees';
     protected $primaryKey='id';
     protected $fillable=([
-
         'firstName',
         'lastName',
-        'companyName',
+        'company_id',
         'email',
         'phone',
 
     ]);
     public function company()
     {
-        return $this->hasMany(company::class);
+        return $this->belongsTo(company::class,'company_id','id');
     }
 }

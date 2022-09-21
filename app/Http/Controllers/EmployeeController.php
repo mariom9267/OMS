@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\employeeValidation;
 use App\Models\company;
 use App\Models\employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\employeeValidation;
 
 class EmployeeController extends Controller
 {
@@ -16,7 +17,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees=employee::all();
+
+        $employees=employee::with('company')->get(['id','firstName','lastName','company_id','email','phone']);
         return view('backend.Employee.index',compact('employees'));
 
     }
@@ -31,15 +33,24 @@ class EmployeeController extends Controller
         $companies=company::all();
         return view('backend.Employee.create',compact('companies'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(employeeValidation $request)
     {
+
+        $firstName=$request->firstName;
+        $lastName=$request->lastName;
+        $company_id=$request->company_id;
+        $email=$request->email;
+        $phone=$request->phone;
+
+        employee::insert([
+            'firstName'=>$firstName,
+            'lastName'=>$lastName,
+            'company_id'=>$company_id,
+            'email'=>$email,
+            'phone'=>$phone
+
+        ]);
+        return redirect('backend/employees')->with('status','employee created successfully');
 
     }
 

@@ -30,7 +30,7 @@
                                         <td class="text-center">{{ $loop->iteration }}</td>
                                         <td class="text-center">{{ $employee->firstName }}</td>
                                         <td class="text-center">{{ $employee->lastName }}</td>
-                                        <td class="text-center">{{ $employee->companyName }}</td>
+                                        <td class="text-center">{{ $employee->company->companyName }}</td>
                                         <td class="text-center">{{ $employee->email }}</td>
                                         <td class="text-center">{{ $employee->phone }}</td>
                                         <td class="text-center">

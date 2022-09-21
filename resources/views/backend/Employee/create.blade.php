@@ -1,19 +1,20 @@
 @extends('backend.layout')
-
 @section('content')
 <div class="container-fluid shadow mt-5" >
     <div class="col-lg-12 col-12  layout-spacing">
         <div class="statbox widget box box-shadow">
-            <div class="widget-header">
+            <div class="widget-header ">
                 <div class="row">
-                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 d-flex ">
-                        <h2 class=" text-center text-center mt-2">Company Create </h2>
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <h2 class="text-center mt-4">Employee  Create </h2>
                     </div>
+                    <div class="col-1"></div>
 
                 </div>
 
             </div>
-            <div class="widget-content widget-content-area">
+            <div class="widget-content widget-content-area mt-4">
                 <form id="save_data" class="" action="{{route('employees.store') }}" method="POST"  enctype="multipart/form-data">
                     {!! csrf_field() !!}
                     <div class="input-group mb-3">
@@ -55,8 +56,8 @@
 
                     </div>
                     <div class="input-group mb-3">
-                        <select type="text" id="id"
-                            class="form-control" name="id" >
+                        <select type="text" id="company_id"
+                            class="form-control" name="company_id" >
                             <option value="">select Company Name</option>
                             @foreach ($companies as $company )
                                 <option value="{{ $company->id }}">{{ $company->companyName}}</option>
